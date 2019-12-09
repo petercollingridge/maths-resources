@@ -1,0 +1,16 @@
+@media print {
+    h1, h2, p {
+        display: none;
+    }
+}
+
+.image-wrapper {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.outline {
+    stroke: #444;
+    fill: white;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Maths resources</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <link rel="stylesheet" href="resources.css">
+    </head>
+
+    <body>
+        <h1>Maths resources</h1>
+
+        <main id="math-resources">
+            <section>
+                <h2>{{ title }}</h2>
+            </section>
+
+            <section class="image-wrapper">
+                <div v-for="n in nImages" :key="n">
+                    <svg :width="gridWidth" :height="gridHeight">
+                        <g v-for="y in gridSize">
+                            <rect
+                                v-for="x in y"
+                                class="outline"
+                                :x="getX(x, y)"
+                                :y="getY(y)"
+                                :width="tileWidth"
+                                :height="tileHeight" />
+                        </g>
+                    </svg>
+                </div>
+            </section>
+        </main>
+
+        <script src="resources.js"></script>
+    </body>
+</html>
