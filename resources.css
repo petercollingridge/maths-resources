@@ -1,13 +1,22 @@
 @media print {
-    h1, h2, p {
+    h1, h2, p, .options {
         display: none;
     }
+}
+
+.options {
+    margin-bottom: 1rem;
 }
 
 .image-wrapper {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    max-width: 970px;
+}
+
+svg {
+    margin-top: 0.5rem;
 }
 
 .outline {

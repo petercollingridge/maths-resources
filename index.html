@@ -16,6 +16,12 @@
         <main id="math-resources">
             <section>
                 <h2>{{ title }}</h2>
+                <div class="options">
+                    <label>Grid size:</label>
+                        <select v-model="gridSize">
+                            <option v-for="gridSize in gridSizes" :value="gridSize">{{ gridSize }}</option>
+                        </select>
+                </div>
             </section>
 
             <section class="image-wrapper">

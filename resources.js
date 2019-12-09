@@ -2,12 +2,17 @@ var vm = new Vue({
     el: '#math-resources',
     data: {
        title: 'Triangle',
-       nImages: 2,
        tileWidth: 30,
        tileHeight: 30,
-       gridSize: 16
+       gridSize: 16,
+       gridSizes: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
     },
     computed: {
+        nImages: function() {
+            var across = Math.floor(970 / (this.gridSize * this.tileWidth));
+            var down = Math.floor(610 / (this.gridSize * this.tileHeight));
+            return across * down;
+        },
         gridWidth: function() {
             return this.gridSize * this.tileWidth + 2;
         },
