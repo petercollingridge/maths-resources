@@ -4,6 +4,17 @@
     }
 }
 
+body {
+    font-family: Montserrat, sans-serif;
+    color: #444;
+}
+
+h1 {
+    font-weight: lighter;
+    text-align: center;
+    border-bottom: 1px solid #525252;
+}
+
 .options {
     margin-bottom: 1rem;
 }
