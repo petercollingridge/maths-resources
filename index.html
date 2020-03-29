@@ -7,21 +7,33 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
         <link rel="stylesheet" href="resources.css">
     </head>
 
     <body>
-        <h1>Maths resources</h1>
+        <h1>Maths Resources</h1>
+
+        <router-view></router-view>
 
         <main id="math-resources">
             <section>
                 <h2>{{ title }}</h2>
                 <div class="options">
-                    <label>Grid size:</label>
+                    <label>
+                        Grid size:
                         <select v-model="gridSize">
                             <option v-for="gridSize in gridSizes" :value="gridSize">{{ gridSize }}</option>
                         </select>
+                    </label>
                 </div>
+                <label>
+                    Tile shape:
+                    <select v-model="tileShape">
+                        <option value="square">Square</option>
+                        <option value="hexagon">Hexagon</option>
+                    </select>
+                </label>
             </section>
 
             <section class="image-wrapper">
@@ -29,12 +41,20 @@
                     <svg :width="gridWidth" :height="gridHeight">
                         <g v-for="y in gridSize">
                             <rect
+                                v-if="tileShape === 'square'"
                                 v-for="x in y"
                                 class="outline"
                                 :x="getX(x, y)"
                                 :y="getY(y)"
                                 :width="tileWidth"
-                                :height="tileHeight" />
+                                :height="tileHeight"
+                            />
+                            <path
+                                v-if="tileShape === 'hexagon'"
+                                v-for="x in y"
+                                class="outline"
+                                :d="getHexagon(x, y, tileWidth)"
+                            />
                         </g>
                     </svg>
                 </div>
