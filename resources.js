@@ -4,7 +4,7 @@ var SQRT3 = Math.sqrt(3);
 var vm = new Vue({
     el: '#math-resources',
     data: {
-       title: 'Triangle',
+       title: 'Trianglular Grid',
        tileShape: 'square',
        tileWidth: 30,
        tileHeight: 30,
@@ -44,4 +44,13 @@ var vm = new Vue({
             return d + 'z';
         }
     }
+});
+
+
+Vue.component('triangular-grid', {
+    data: function () {
+        return {
+        }
+    },
+    template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
 });
