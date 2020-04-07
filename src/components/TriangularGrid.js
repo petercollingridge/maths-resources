@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './grid.css';
 
 
 const Page = () => {
-    const gridSize = 10;
+    const [gridSize, setGridSize] = useState(10);
+
     const tileWidth = 20;
     const tileHeight = 20;
     const gridWidth = gridSize * tileWidth;
@@ -27,11 +28,33 @@ const Page = () => {
         }
     }
 
-    return <section className="print-section">
-        <svg className="grid" viewBox={`-1 -1 ${gridWidth + 2} ${gridHeight + 2}`}>
-            { tiles }
-        </svg>
-    </section>
+    const setValidGridSize = (evt) => {
+        if (evt.target.validity.valid) {
+            setGridSize(evt.target.value);
+        }
+    }
+
+    return <>
+        <section class="options">
+            <form>
+                <label htmlFor="grid-size">Grid size:</label>
+                <input
+                    id="grid-size"
+                    type="number"
+                    min="1"
+                    max="20"
+                    value={gridSize}
+                    onChange={setValidGridSize}
+                >
+                </input>
+            </form>
+        </section>
+        <section>
+            <svg style={{maxHeight: '80vh'}} className="grid" viewBox={`-1 -1 ${gridWidth + 2} ${gridHeight + 2}`}>
+                { tiles }
+            </svg>
+        </section>
+    </>
 }
 
 export default Page;
