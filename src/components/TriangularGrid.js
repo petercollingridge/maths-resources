@@ -2,11 +2,18 @@ import React, { useState } from 'react';
 import './grid.css';
 
 
+const checkValidity = callback =>
+    (evt) => {
+        if (evt.target.validity.valid) {
+            callback(evt.target.value);
+        }
+    }
+
 const Page = () => {
     const [gridSize, setGridSize] = useState(10);
+    const [tileWidth, setTileWidth] = useState(20);
+    const [tileHeight, setTileHeight] = useState(20);
 
-    const tileWidth = 20;
-    const tileHeight = 20;
     const gridWidth = gridSize * tileWidth;
     const gridHeight = gridSize * tileHeight;
 
@@ -28,33 +35,50 @@ const Page = () => {
         }
     }
 
-    const setValidGridSize = (evt) => {
-        if (evt.target.validity.valid) {
-            setGridSize(evt.target.value);
-        }
-    }
-
-    return <>
+    return <article>
         <section class="options">
+            <h2>Triangular grid</h2>
             <form>
-                <label htmlFor="grid-size">Grid size:</label>
-                <input
-                    id="grid-size"
-                    type="number"
-                    min="1"
-                    max="20"
-                    value={gridSize}
-                    onChange={setValidGridSize}
-                >
-                </input>
+                <label>
+                    Grid size:
+                    <input
+                        type="number"
+                        min="1"
+                        max="20"
+                        value={gridSize}
+                        onChange={checkValidity(setGridSize)}
+                    />
+                </label>
+                <label>
+                    Tile width:
+                    <input
+                        type="number"
+                        min="10"
+                        max="100"
+                        value={tileWidth}
+                        onChange={checkValidity(setTileWidth)}
+                    />
+                </label>
+                <label>
+                    Tile height:
+                    <input
+                        type="number"
+                        min="10"
+                        max="100"
+                        value={tileHeight}
+                        onChange={checkValidity(setTileHeight)}
+                    />
+                </label>
             </form>
+            <button onClick={window.print}>Print</button>
         </section>
-        <section>
+
+        <section className="image">
             <svg style={{maxHeight: '80vh'}} className="grid" viewBox={`-1 -1 ${gridWidth + 2} ${gridHeight + 2}`}>
                 { tiles }
             </svg>
         </section>
-    </>
+    </article>
 }
 
 export default Page;

@@ -14,21 +14,59 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-    font-weight: lighter;
-    text-align: center;
+header {
+    padding: 0.6rem;
     border-bottom: 1px solid #525252;
 }
 
+h1 {
+    font-weight: 200;
+    text-align: center;
+    margin: 0;
+}
+
 main {
-    margin: 0 1.6rem;
+    margin: 1rem 1.6rem;
+}
+
+article {
+    display: flex;
+}
+
+.options {
+    flex: 0 0 12rem;
+}
+
+.image {
+    flex: 1 0;
+    padding: 0.5rem;
+}
+
+.options label {
+    display: block;
+    line-height: 2rem;
 }
 
 input {
-    padding: 0.25rem;
+    padding: 0.2rem 0.2rem 0.2rem 0.4rem;
     font-size: 1rem;
 }
 
-label {
-    padding-right: 0.5rem;
+label>input {
+    margin-left: 0.5rem;
+}
+
+button {
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.3rem;
+    color: white;
+    background-color: #1F5488;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #286faa;
 }
