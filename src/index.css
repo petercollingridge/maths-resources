@@ -52,7 +52,7 @@ input {
     font-size: 1rem;
 }
 
-label>input {
+label>input, label>select {
     margin-left: 0.5rem;
 }
 

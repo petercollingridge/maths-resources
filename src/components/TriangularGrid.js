@@ -9,6 +9,32 @@ const checkValidity = callback =>
         }
     }
 
+// Get an array of (x, y) coordinates for the center of tiles in a triangular grid
+const getPositions = (size, width, tileWidth, tileHeight) => {
+    const positions = [];
+
+    for (let i = 0; i < size; i++) {
+        const y = (i + 0.5) * tileHeight + 1;
+        for (let j = 0; j <= i; j++) {
+            const x = (width - i * tileWidth) / 2 + j * tileWidth + 1;
+            positions.push({x, y});
+        }
+    }
+
+    return positions;
+}
+
+const getRectTiles = (x, y, width, height, index) => {
+    return <rect
+        className="tile"
+        key={index}
+        x={x - width / 2}
+        y={y - height / 2}
+        width={width}
+        height={height}
+    />
+}
+
 const Page = () => {
     const [gridSize, setGridSize] = useState(10);
     const [tileWidth, setTileWidth] = useState(20);
@@ -17,34 +43,29 @@ const Page = () => {
     const gridWidth = gridSize * tileWidth;
     const gridHeight = gridSize * tileHeight;
 
-    const tiles = [];
-    for (let i = 0; i < gridSize; i++) {
-        const y = i * tileHeight;
-        for (let j = 0; j <= i; j++) {
-            const x = (gridWidth - i * tileWidth) / 2 + (j - 0.5) * tileWidth;
-            tiles.push(
-                <rect
-                    className="tile"
-                    key={`${i}-${j}`}
-                    x={x}
-                    y={y}
-                    width={tileWidth}
-                    height={tileHeight}
-                />
-            );
-        }
-    }
+    const positions = getPositions(gridSize, gridWidth, tileWidth, tileHeight);
+    const tiles = positions.map(
+        ({x, y}, index) => getRectTiles(x, y, tileWidth, tileHeight, index)
+    );
 
     return <article>
-        <section class="options">
+        <section className="options">
             <h2>Triangular grid</h2>
             <form>
+                <label>
+                    Tile shape:
+                    <select>
+                        <option>Square</option>
+                        <option>Rectangle</option>
+                        <option>Hexagon</option>
+                    </select>
+                </label>
                 <label>
                     Grid size:
                     <input
                         type="number"
                         min="1"
-                        max="20"
+                        max="32"
                         value={gridSize}
                         onChange={checkValidity(setGridSize)}
                     />
@@ -74,7 +95,7 @@ const Page = () => {
         </section>
 
         <section className="image">
-            <svg style={{maxHeight: '80vh'}} className="grid" viewBox={`-1 -1 ${gridWidth + 2} ${gridHeight + 2}`}>
+            <svg className="grid" width={gridWidth + 2} height={gridHeight + 2}>
                 { tiles }
             </svg>
         </section>
