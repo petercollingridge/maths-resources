@@ -12,3 +12,5 @@ Open http://localhost:3000 to view it in the browser.
 `npm run deploy`
 
 Create a build and deploy to Github.io https://petercollingridge.github.io/maths-resources/
+
+Using https://dev.to/yuribenjamin/how-to-deploy-react-app-in-github-pages-2a1f
