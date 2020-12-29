@@ -47,14 +47,14 @@ function Page() {
     return (
         <>
             <h2>Code</h2>
-            <div>
+            <div className="no-print">
                 <button onClick={shuffleLetters}>New code</button>
             </div>
             <CipherMapping letters={shuffledLetters} />
 
             <div className="no-print">
                 <h2>Message</h2>
-                <p>Type your message. (Letters, spaces and punctuation only.)</p>
+                <p>Type your message. (It can't include any numbers)</p>
                 <textarea
                     className="cipher-message-box"
                     value={plainText}

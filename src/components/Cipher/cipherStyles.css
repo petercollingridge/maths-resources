@@ -7,6 +7,11 @@
 
 .cipher-message {
     display: flex;
+    flex-wrap: wrap;
+}
+
+.cipher-word {
+    display: flex;
 }
 
 .cipher-character {
@@ -17,11 +22,12 @@
 }
 
 .cipher-character span {
-    width: 2.5rem;
+    min-width: 1.5rem;
     text-align: center;
 }
 
 .cipher-code {
+    width: 2.5rem;
     align-self: flex-end;
     border-top: 1px solid #888;
 }
