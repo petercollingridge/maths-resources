@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 function Page() {
     return (
         <ul>
-            <li>Grids</li>
+            <li><Link to="/triangular-grids">Grids</Link></li>
             <li><Link to="/cipher">Ciphers</Link></li>
         </ul>
     );
