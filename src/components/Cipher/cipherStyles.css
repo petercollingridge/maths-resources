@@ -1,3 +1,11 @@
+p button {
+    margin-left: 0.5rem;
+}
+
+.hidden {
+    display: none;
+}
+
 .cipher-message-box {
     width: 100%;
     height: 4rem;
@@ -17,13 +25,13 @@
 
 .cipher-character {
     height: 4rem;
-    margin: 0.5rem;
+    margin: 0.4rem;
     font-size: 1.5rem;
     display: flex;
 }
 
 .cipher-character span {
-    min-width: 1.5rem;
+    min-width: 1.8rem;
     text-align: center;
 }
 

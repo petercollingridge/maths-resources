@@ -27,8 +27,35 @@ function translate(plainText, code) {
         });
 }
 
+function PlainText({ textHidden, setTextHidden, plainText, updatePlainText }) {
+    if (textHidden) {
+        return (
+            <button onClick={() => (setTextHidden(false))}>
+                Show message
+            </button>
+        );
+    } else {
+        return (
+            <>
+                <h2>Message</h2>
+                <p>
+                    Type your message. (It can't include any numbers.)
+                    <button onClick={() => setTextHidden(!textHidden)}>Hide</button>
+                </p>
+                <textarea
+                    className="cipher-message-box"
+                    value={plainText}
+                    onChange={updatePlainText}
+                    placeholder="Type your message"
+                />
+            </>
+        );
+    }
+}
+
 function Page() {
     const [plainText, setPlainText] = useState('');
+    const [textHidden, setTextHidden] = useState(false);
     const [message, setMessage] = useState([]);
     const [shuffledLetters, setShuffledLetters] = useState(shuffle(letters));
 
@@ -46,22 +73,21 @@ function Page() {
 
     return (
         <>
+            <h2>Introduction</h2>
+            <p>Type a message in the box below and it will be encoded into numbers using the code shown.</p>
+
+            <PlainText
+                textHidden={textHidden}
+                setTextHidden={setTextHidden}
+                plainText={plainText}
+                updatePlainText={updatePlainText}
+            />
+
             <h2>Code</h2>
             <div className="no-print">
                 <button onClick={shuffleLetters}>New code</button>
             </div>
             <CipherMapping letters={shuffledLetters} />
-
-            <div className="no-print">
-                <h2>Message</h2>
-                <p>Type your message. (It can't include any numbers)</p>
-                <textarea
-                    className="cipher-message-box"
-                    value={plainText}
-                    onChange={updatePlainText}
-                    placeholder="Type your message"
-                />
-            </div>
 
             <h2>Coded message</h2>
             <Message message={message} />
