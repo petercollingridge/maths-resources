@@ -1,9 +1,18 @@
+/****************************************************************
+ * Front page
+*****************************************************************/
+
 import React from 'react';
+import { Link } from "react-router-dom";
 
 
-const Page = () =>
-    <ul>
-        <li>Grids</li>
-    </ul>
+function Page() {
+    return (
+        <ul>
+            <li>Grids</li>
+            <li><Link to="/cipher">Ciphers</Link></li>
+        </ul>
+    );
+}
 
 export default Page;

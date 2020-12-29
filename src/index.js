@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 
 import MainPage from './components/IndexPage';
-import TriangularGrid from './components/TriangularGrid';
+import TriangularGrid from './components/Grids/TriangularGrid';
+import CipherPage from './components/Cipher/CipherPage';
 
 import * as serviceWorker from './serviceWorker';
 import './index.css';
@@ -19,6 +20,7 @@ const App = () =>
             <Router>
                 <Switch>
                     <Route path="/triangular-grids" component={TriangularGrid} />
+                    <Route path="/cipher" component={CipherPage} />
                     <Route path="/" component={MainPage} />
                 </Switch>
             </Router>
