@@ -35,7 +35,17 @@
 
 table.cipher-table {
     border-collapse: collapse;
-    margin-top: 1.5rem;
+    margin-top: 0.8rem;
+    margin-bottom: 0.8rem;
+}
+
+.cipher-table th {
+    cursor: pointer;
+}
+
+.cipher-table th:hover {
+    background-color: rgb(168, 202, 252);
+    border-color: rgb(168, 202, 252);
 }
 
 .cipher-table th,
