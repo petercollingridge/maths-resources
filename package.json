@@ -1,5 +1,6 @@
 {
   "name": "maths-resources",
+  "homepage": "http://petercollingridge.github.io/math-resources",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
