@@ -12,6 +12,7 @@
 
 .cipher-word {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .cipher-character {
