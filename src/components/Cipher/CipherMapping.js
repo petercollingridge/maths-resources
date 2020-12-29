@@ -7,7 +7,7 @@
 import React, { useState } from 'react';
 
 
-function LetterTable({ letters, hiddenLetterState, startIndex=0 }) {
+function LetterTable({ letters, hiddenLetterState, usedLetters, startIndex=0 }) {
     const [hiddenLetters, setHiddenLetters] = hiddenLetterState;
 
     function updateHiddenLetters(letter) {
@@ -24,8 +24,9 @@ function LetterTable({ letters, hiddenLetterState, startIndex=0 }) {
             <thead>
                 <tr>
                     { letters.map((letter) => {
+                        const className = usedLetters.has(letter) ? 'used-letter' : 'unused-letter';
                         return (
-                            <th key={letter} onClick={() => updateHiddenLetters(letter)}>
+                            <th key={letter} className={className} onClick={() => updateHiddenLetters(letter)}>
                                 { hiddenLetters.has(letter) ? ' ' : letter }
                             </th>
                         );
@@ -41,8 +42,9 @@ function LetterTable({ letters, hiddenLetterState, startIndex=0 }) {
     );
 }
 
-function CipherMapping({ letters }) {
+function CipherMapping({ letters, plainText }) {
     const hiddenLetterState = useState(new Set());
+    const usedLetters = new Set(plainText);
 
     const n = Math.floor(letters.length / 2);
     const letters1 = letters.slice(0, n);
@@ -50,8 +52,8 @@ function CipherMapping({ letters }) {
 
     return (
         <div>
-            <LetterTable letters={letters1} hiddenLetterState={hiddenLetterState} />
-            <LetterTable letters={letters2} hiddenLetterState={hiddenLetterState} startIndex={n} />
+            <LetterTable letters={letters1} hiddenLetterState={hiddenLetterState} usedLetters={usedLetters} />
+            <LetterTable letters={letters2} hiddenLetterState={hiddenLetterState} usedLetters={usedLetters} startIndex={n} />
         </div>
     );
 }

@@ -28,6 +28,8 @@ p button {
     margin: 0.4rem;
     font-size: 1.5rem;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .cipher-character span {
@@ -35,10 +37,10 @@ p button {
     text-align: center;
 }
 
-.cipher-code {
+.cipher-letter {
+    height: 2rem;
     width: 2.5rem;
-    align-self: flex-end;
-    border-top: 1px solid #888;
+    border-bottom: 1px solid #888;
 }
 
 table.cipher-table {
@@ -63,4 +65,8 @@ table.cipher-table {
     text-align: center;
     font-size: 1.4rem;
     border: 1px solid #ccc;
+}
+
+.cipher-table th.unused-letter {
+    color: #888;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 
 function isCodeCharacter(character) {
@@ -29,27 +29,62 @@ function splitIntoWords(message) {
     return words;
 }
 
-function Word({ characters }) {
+function Word({ characters, showLetters, letters }) {
     return (
         <span className="cipher-word">
             { characters.map((character, index) => {
-                const className = isCodeCharacter(character) ? "cipher-code" : null;
-                return (
-                    <span key={index} className="cipher-character">
-                        <span className={className}>{ character }</span>
-                    </span>
-                );
+                if (isCodeCharacter(character)) {
+                    let letter = '';
+                    if (showLetters) {
+                        letter = letters[character - 1];
+                    }
+                    return (
+                        <span key={index} className="cipher-character">
+                            <span className="cipher-letter">
+                                <span className="no-print">{ letter }</span>
+                            </span>
+                            <span>{ character }</span>
+                        </span>
+                    );
+                } else {
+                    return (
+                        <span key={index} className="cipher-character">
+                            <span>{ character }</span>
+                        </span>
+                    );
+                }
             })}
         </span>
     );
 }
 
-function Message({ message }) {
+function Message({ message, letters }) {
+    const [showLetters, setShowLetters] = useState(false);
     const words = splitIntoWords(message);
+
     return (
-        <div className="cipher-message">
-            { words.map((word, index) => <Word key={index} characters={word}/>) }
-        </div>
+        <section>
+            <h2>Coded message</h2>
+            <div className="no-print">
+                <input
+                    id="show-letters"
+                    type="checkbox"
+                    checked={showLetters}
+                    onChange={() => setShowLetters(!showLetters)}
+                />
+                <label htmlFor="show-letters"> Show known letters</label>
+            </div>
+            <div className="cipher-message">
+                { words.map((word, index) => (
+                    <Word
+                        key={index}
+                        characters={word}
+                        letters={letters}
+                        showLetters={showLetters}
+                    />
+                ))}
+            </div>
+        </section>
     );
 }
 

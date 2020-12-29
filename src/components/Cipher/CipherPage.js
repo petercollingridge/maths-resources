@@ -73,24 +73,32 @@ function Page() {
 
     return (
         <>
-            <h2>Introduction</h2>
-            <p>Type a message in the box below and it will be encoded into numbers using the code shown.</p>
+            <section className="no-print">
+                <h2>Introduction</h2>
+                <p>
+                    Type a message in the box below and it will be encoded into numbers
+                    using the code shown. Then hide the message and see if your friend
+                    can decode it. To make things harder you can click on letters in the
+                    code table to hide them.
+                </p>
 
-            <PlainText
-                textHidden={textHidden}
-                setTextHidden={setTextHidden}
-                plainText={plainText}
-                updatePlainText={updatePlainText}
-            />
+                <PlainText
+                    textHidden={textHidden}
+                    setTextHidden={setTextHidden}
+                    plainText={plainText}
+                    updatePlainText={updatePlainText}
+                />
+            </section>
 
-            <h2>Code</h2>
-            <div className="no-print">
-                <button onClick={shuffleLetters}>New code</button>
-            </div>
-            <CipherMapping letters={shuffledLetters} />
+            <section>
+                <h2>Code</h2>
+                <div className="no-print">
+                    <button onClick={shuffleLetters}>New code</button>
+                </div>
+                <CipherMapping letters={shuffledLetters} plainText={plainText} />
+            </section>
 
-            <h2>Coded message</h2>
-            <Message message={message} />
+            <Message message={message} letters={shuffledLetters} />
         </>
     );
 }
