@@ -21,6 +21,12 @@ body {
 header {
     padding: 0.6rem;
     border-bottom: 1px solid #525252;
+    position: relative;
+}
+
+header .home-button {
+    position: absolute;
+    bottom: 0.3rem;
 }
 
 h1 {

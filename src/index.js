@@ -13,6 +13,7 @@ import './index.css';
 const App = () =>
     <React.StrictMode>
         <header>
+            <a className="home-button" href="/">Home</a>
             <h1>Maths Resources</h1>
         </header>
 
